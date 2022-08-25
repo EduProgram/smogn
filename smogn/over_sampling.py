@@ -471,7 +471,10 @@ def over_sampling(
     
     ## synthetic data quality check
     if sum(data_new.isnull().sum()) > 0:
-        raise ValueError("oops! synthetic data contains missing values")
+        data_new.replace(0, nan) #Edu
+        
+        if sum(data_new.isnull().sum()) > 0: #Edu
+            raise ValueError("oops! synthetic data contains missing values")
     
     ## replace label encoded values with original values
     for j in feat_list_nom:
