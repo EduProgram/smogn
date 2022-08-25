@@ -471,9 +471,9 @@ def over_sampling(
     
     ## synthetic data quality check
     if sum(data_new.isnull().sum()) > 0:
-        data_new.replace(0, nan) #Edu
+        data_new.fillna(data_new.median(), inplace=True) #Edu (fill missing values with median column values)
         
-        if sum(data_new.isnull().sum()) > 0: #Edu
+        if sum(data_new.isnull().sum()) > 0: #Edu (if this not work, print the Error)
             raise ValueError("oops! synthetic data contains missing values")
     
     ## replace label encoded values with original values
