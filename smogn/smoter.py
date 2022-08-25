@@ -286,6 +286,7 @@ def smoter(
     
     ## restore original data types
     for j in range(d):
+        data_new=data_new.fillna(data_new.median())
         data_new.iloc[:, j] = data_new.iloc[:, j].astype(feat_dtypes_orig[j])
     
     ## return modified training set
